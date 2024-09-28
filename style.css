@@ -1,0 +1,75 @@
+@import url('fonts.css');
+
+body {
+    background: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header p {
+    margin: 0;
+}
+footer {
+    position: absolute;
+    top: 90%;
+}
+h1 {
+    color: pink;
+    text-align: center;
+    font-size: 36px;
+}
+.text {
+    color: pink;
+}
+.view-main {
+    & button {
+        font-size: 20px;
+        background: pink;
+        border-radius: 20px;
+        border: 0;
+        padding: 15px 20px;
+        transition: background .5s 150ms, color .5s 150ms, scale .5s 150ms;
+        &:hover {
+            cursor: pointer;
+            background: rgb(224, 102, 102);
+            color: whitesmoke;
+            scale: 1.1;
+        }
+    }
+}
+.inputs-add {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    & button {
+        padding: 0 20px;
+        background: pink;
+        transition: background .5s 150ms, color .5s 150ms, scale .5s 150ms;
+        &:hover {
+            cursor: pointer;
+            background: rgb(224, 102, 102);
+            color: whitesmoke;
+            scale: 1.1;
+        }
+    }
+}
+textarea {
+    padding: 10px;
+    border: solid 5px pink;
+    margin-bottom: 20px;
+}
+input[type="datetime-local"] {
+    border: solid pink;
+    padding: 5px;
+}
+.input-add {
+    border-radius: 15px;
+}
+.view {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

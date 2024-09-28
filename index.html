@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Напоминалка</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <p class="text pacifico-regular" style="font-size: 36px;">Мой ежедневник</p>
+    </header>
+    <main>
+        <section class="view-main view" style="visibility: visible;">
+            <h1 class="pacifico-regular">Главная</h1>
+            <button id="btn-add" class="pacifico-regular">Добавить напоминание</button>
+        </section>
+        <section class="view-add view" style="visibility: hidden;">
+            <form action="" class="form-add">
+                <textarea class="input-add" name="description" placeholder="Важное дельце!" rows="10" cols="50"></textarea>
+                <div class="inputs-add">
+                    <input class="input-add" type="datetime-local" name="datetime">
+                    <button class="input-add pacifico-regular" type="submit">Добавить!</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p class="text pacifico-regular">Создано с любовью!</p>
+    </footer>
+</body>
+</html>
