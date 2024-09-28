@@ -15,13 +15,13 @@
     <main>
         <section class="view-main view" style="visibility: visible;">
             <h1 class="pacifico-regular">Главная</h1>
-            <button id="btn-add" class="pacifico-regular">Добавить напоминание</button>
+            <button id="btn-add" class="pacifico-regular">📝Добавить напоминание</button>
         </section>
         <section class="view-add view" style="visibility: hidden;">
-            <form action="" class="form-add">
-                <textarea class="input-add" name="description" placeholder="Важное дельце!" rows="10" cols="50"></textarea>
+            <form id="form-add" action="" class="form-add">
+                <textarea class="input-add" name="description" placeholder="Важное дельце!" rows="10" cols="50" required oninvalid="this.setCustomValidity('Заполни меня! (>_<)')" oninput="setCustomValidity('')"></textarea>
                 <div class="inputs-add">
-                    <input class="input-add" type="datetime-local" name="datetime">
+                    <input class="input-add" type="datetime-local" name="datetime" required oninvalid="this.setCustomValidity('Заполни меня! (>_<)')" oninput="setCustomValidity('')">
                     <button class="input-add pacifico-regular" type="submit">Добавить!</button>
                 </div>
             </form>

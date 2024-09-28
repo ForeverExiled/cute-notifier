@@ -44,6 +44,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     & button {
+        font-size: 18px;
         padding: 0 20px;
         background: pink;
         transition: background .5s 150ms, color .5s 150ms, scale .5s 150ms;
@@ -66,6 +67,9 @@ input[type="datetime-local"] {
 }
 .input-add {
     border-radius: 15px;
+    &:focus {
+        outline: none;
+    }
 }
 .view {
     position: absolute;
