@@ -1,5 +1,11 @@
 function add() {
     console.log($("#form-add").serializeArray());
+    $('button.input-add').click(() => {
+        $('main').append('<div id="modal-success" class="view"><span class="pacifico-regular">Успешно!</span></div>');
+    });
+    setTimeout(() => {
+        $('#modal-success').remove();
+    }, 1000);
 }
 
 $(function () {
