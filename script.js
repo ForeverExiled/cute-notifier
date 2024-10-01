@@ -8,31 +8,29 @@ function add() {
     }, 1000);
 }
 
+function change_view(from, to) {
+    const view_change_timeout = 300;
+    if (to !== '.view-main') {
+        $('#btn-home').css('visibility', 'visible');
+    } else {
+        $('#btn-home').css('visibility', 'hidden');
+    }
+    $(from).removeClass('active');
+    setTimeout(() => {
+        $(to).addClass('active');
+    }, view_change_timeout);
+}
+
 $(function () {
     $('#btn-add').click(function () {
-        setTimeout(() => {
-            $('.view-main').css({
-                visibility: 'hidden',
-                'z-index': 0,
-            });
-            $('.view-add').css({
-                visibility: 'visible',
-                'z-index': 1,
-            });
-        }, 300);
+        change_view('.view-main', '.view-add');
+    });
+    $('#btn-list').click(function () { 
+        change_view('.view-main', '.view-list');
     });
     $('#form-add').submit(function (e) {
         e.preventDefault();
         add();
-        setTimeout(() => {
-            $('.view-add').css({
-                visibility: 'hidden',
-                'z-index': 0,
-            });
-            $('.view-main').css({
-                visibility: 'visible',
-                'z-index': 1,
-            });
-        }, 300);
+        change_view('.view-add', '.view-main');
     });
 });
