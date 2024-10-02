@@ -1,3 +1,12 @@
+function clear_form_fields() {
+    console.log($('textarea[name="description"]').val());
+    console.log($('input[name="datetime"]').val());
+    $('textarea[name="description"]').val('');
+    $('input[name="datetime"]').val('');
+    console.log($('textarea[name="description"]').val());
+    console.log($('input[name="datetime"]').val());
+}
+
 function show_modal() {
     $('.view.active').removeClass('active');
     $('.modal').addClass('active');
@@ -46,6 +55,7 @@ $(function () {
         e.preventDefault();
         show_modal();
         console.log($("#form-add").serializeArray());
+        clear_form_fields();
     });
     $('#footer-text').hover(function () {
         clearInterval(interval_heartbeat);
