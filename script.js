@@ -1,3 +1,12 @@
+function show_modal() {
+    $('.view.active').removeClass('active');
+    $('.modal').addClass('active');
+    setTimeout(() => {
+        $('.modal').removeClass('active');
+        change_view('.view-main');
+    }, 1000);
+}
+
 /**
  * Makes the heart in the footer beat
  */
@@ -10,24 +19,15 @@ function run_heartbeat() {
     }, 1200);
 }
 
-function add() {
-    console.log($("#form-add").serializeArray());
-    $('button.input-add').click(() => {
-        $('main').append('<div id="modal-success" class="view"><span class="pacifico-regular">Успешно!</span></div>');
-    });
-    setTimeout(() => {
-        $('#modal-success').remove();
-    }, 1000);
-}
-
-function change_view(from, to) {
+function change_view(to) {
     const view_change_timeout = 300;
+
     if (to !== '.view-main') {
         $('#btn-home').css('visibility', 'visible');
     } else {
         $('#btn-home').css('visibility', 'hidden');
     }
-    $(from).removeClass('active');
+    $('.view.active').removeClass('active');
     setTimeout(() => {
         $(to).addClass('active');
     }, view_change_timeout);
@@ -37,15 +37,15 @@ $(function () {
     let interval_heartbeat = run_heartbeat();
 
     $('#btn-add').click(function () {
-        change_view('.view-main', '.view-add');
+        change_view('.view-add');
     });
     $('#btn-list').click(function () { 
-        change_view('.view-main', '.view-list');
+        change_view('.view-list');
     });
     $('#form-add').submit(function (e) {
         e.preventDefault();
-        add();
-        change_view('.view-add', '.view-main');
+        show_modal();
+        console.log($("#form-add").serializeArray());
     });
     $('#footer-text').hover(function () {
         clearInterval(interval_heartbeat);
@@ -55,5 +55,9 @@ $(function () {
         $(this).text('💗');
         $('.tooltip').css('visibility', 'visible');
         interval_heartbeat = run_heartbeat();
+    });
+    $('#btn-home').click(function (e) { 
+        e.preventDefault();
+        change_view('.view-main');
     });
 });
