@@ -33,4 +33,12 @@ $(function () {
         add();
         change_view('.view-add', '.view-main');
     });
+    $('#footer-text').hover(function () {
+            $(this).text('Создано с любовью!');
+            $('.tooltip').css('visibility', 'hidden');
+        }, function () {
+            $(this).text('💗');
+            $('.tooltip').css('visibility', 'visible');
+        }
+    );
 });
