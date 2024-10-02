@@ -34,11 +34,15 @@ $(function () {
         change_view('.view-add', '.view-main');
     });
     $('#footer-text').hover(function () {
-            $(this).text('Создано с любовью!');
-            $('.tooltip').css('visibility', 'hidden');
+            setTimeout(() => {
+                $(this).text('Создано с любовью!');
+                $('.tooltip').css('visibility', 'hidden');
+            }, 100);
         }, function () {
-            $(this).text('💗');
-            $('.tooltip').css('visibility', 'visible');
+            setTimeout(() => {
+                $(this).text('💗');
+                $('.tooltip').css('visibility', 'visible');
+            }, 1000);
         }
     );
 });

@@ -1,5 +1,8 @@
 @import url('fonts.css');
 
+html {
+    user-select: none;
+}
 body {
     background: black;
     margin: 0;
