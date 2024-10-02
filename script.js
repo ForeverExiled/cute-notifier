@@ -1,3 +1,15 @@
+/**
+ * Makes the heart in the footer beat
+ */
+function run_heartbeat() {
+    return setInterval(() => {
+        $('#footer-text').css('transform', 'scale(1.5)');
+        setTimeout(() => {
+            $('#footer-text').css('transform', 'scale(1)');
+        }, 200);
+    }, 1200);
+}
+
 function add() {
     console.log($("#form-add").serializeArray());
     $('button.input-add').click(() => {
@@ -22,6 +34,8 @@ function change_view(from, to) {
 }
 
 $(function () {
+    let interval_heartbeat = run_heartbeat();
+
     $('#btn-add').click(function () {
         change_view('.view-main', '.view-add');
     });
@@ -34,15 +48,12 @@ $(function () {
         change_view('.view-add', '.view-main');
     });
     $('#footer-text').hover(function () {
-            setTimeout(() => {
-                $(this).text('Создано с любовью!');
-                $('.tooltip').css('visibility', 'hidden');
-            }, 100);
-        }, function () {
-            setTimeout(() => {
-                $(this).text('💗');
-                $('.tooltip').css('visibility', 'visible');
-            }, 1000);
-        }
-    );
+        clearInterval(interval_heartbeat);
+        $(this).text('Создано с любовью!');
+        $('.tooltip').css('visibility', 'hidden');
+    }, function () {
+        $(this).text('💗');
+        $('.tooltip').css('visibility', 'visible');
+        interval_heartbeat = run_heartbeat();
+    });
 });
