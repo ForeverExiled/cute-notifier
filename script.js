@@ -3,11 +3,10 @@ function clear_form_fields() {
     $('input[name="datetime"]').val('');
 }
 
-function show_modal() {
+function show_modal(type) {
     $('.view.active').removeClass('active');
-    $('.modal').addClass('active');
+    $('.modal-' + type).addClass('active');
     setTimeout(() => {
-        $('.modal').removeClass('active');
         change_view('.view-main');
     }, 1000);
 }
@@ -39,6 +38,8 @@ function change_view(to) {
 }
 
 $(function () {
+    $('input[name="datetime"]').attr('min', (new Date()).toISOString().substring(0, 16));
+
     let interval_heartbeat = run_heartbeat();
 
     $('#btn-add').click(function () {
@@ -55,10 +56,8 @@ $(function () {
     });
     $('#form-add').submit(function (e) {
         e.preventDefault();
-        show_modal();
-        $.post("ajax/add.php", $("#form-add").serialize(),
-        ).done(function (response) {
-            console.log(response);
+        $.post("ajax/add.php", $("#form-add").serialize()).done(function (response) {
+            show_modal(response === 'true' ? 'success' : 'failure');
         });
         clear_form_fields();
     });
@@ -74,5 +73,12 @@ $(function () {
     $('#btn-home').click(function (e) { 
         e.preventDefault();
         change_view('.view-main');
+    });
+    $('input[name="datetime"]').on('invalid', function () {
+        if ($(this).val() === '') {
+            $(this).get(0).setCustomValidity('Заполни меня! (>_<)');
+        } else {
+            $(this).get(0).setCustomValidity('Дата и время не должны быть меньше текущих! (>_<)');
+        }
     });
 });

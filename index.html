@@ -25,14 +25,17 @@
             <form id="form-add" action="" class="form-add">
                 <textarea class="input-add" name="description" placeholder="Важное дельце!" rows="10" cols="50" required oninvalid="this.setCustomValidity('Заполни меня! (>_<)')" oninput="setCustomValidity('')"></textarea>
                 <div class="inputs-add">
-                    <input class="input-add" type="datetime-local" name="datetime" required oninvalid="this.setCustomValidity('Заполни меня! (>_<)')" oninput="setCustomValidity('')">
+                    <input class="input-add" type="datetime-local" name="datetime" required oninput="setCustomValidity('')">
                     <button class="input-add pacifico-regular" type="submit">Добавить!</button>
                 </div>
             </form>
         </section>
         <section class="view-list view"></section>
-        <section class="modal view">
+        <section class="modal modal-success view">
             <p class="text pacifico-regular">Успешно!</p>
+        </section>
+        <section class="modal modal-failure view">
+            <p class="text pacifico-regular">Что-то пошло не так :(</p>
         </section>
     </main>
     <footer>
