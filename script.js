@@ -1,10 +1,6 @@
 function clear_form_fields() {
-    console.log($('textarea[name="description"]').val());
-    console.log($('input[name="datetime"]').val());
     $('textarea[name="description"]').val('');
     $('input[name="datetime"]').val('');
-    console.log($('textarea[name="description"]').val());
-    console.log($('input[name="datetime"]').val());
 }
 
 function show_modal() {
@@ -54,7 +50,10 @@ $(function () {
     $('#form-add').submit(function (e) {
         e.preventDefault();
         show_modal();
-        console.log($("#form-add").serializeArray());
+        $.post("ajax/add.php", $("#form-add").serialize(),
+        ).done(function (response) {
+            console.log(response);
+        });
         clear_form_fields();
     });
     $('#footer-text').hover(function () {
