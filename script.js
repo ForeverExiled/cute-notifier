@@ -45,6 +45,12 @@ $(function () {
         change_view('.view-add');
     });
     $('#btn-list').click(function () { 
+        $.get("ajax/view.php", {
+            all: 'Y',
+        }).done(function (response) {
+            response = JSON.parse(response);
+            $('.view-list').text('').append(response);
+        });
         change_view('.view-list');
     });
     $('#form-add').submit(function (e) {
