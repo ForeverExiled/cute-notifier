@@ -45,18 +45,20 @@ $(function () {
     $('#btn-add').click(function () {
         change_view('.view-add');
     });
-    $('#btn-list').click(function () { 
-        $.get("ajax/view.php", {
+    $('#btn-list').click(function () {
+        const page = $('.todo-list').data('page');
+        $.get('ajax/view.php', {
             all: 'Y',
+            page: page ? page : 0,
         }).done(function (response) {
             response = JSON.parse(response);
-            $('.view-list').text('').append(response);
+            $('.view-list .list__wrapper').text('').append(response);
         });
         change_view('.view-list');
     });
     $('#form-add').submit(function (e) {
         e.preventDefault();
-        $.post("ajax/add.php", $("#form-add").serialize()).done(function (response) {
+        $.post('ajax/add.php', $('#form-add').serialize()).done(function (response) {
             show_modal(response === 'true' ? 'success' : 'failure');
         });
         clear_form_fields();

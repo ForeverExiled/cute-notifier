@@ -10,12 +10,12 @@
 </head>
 <body>
     <header>
-        <p class="text pacifico-regular" style="font-size: 36px;">Мой ежедневник</p>
+        <h1 class="text pacifico-regular">Мой ежедневник</h1>
         <a href="#" id="btn-home" class="text pacifico-regular" style="visibility: hidden;">🏠Домой</a>
     </header>
     <main>
         <section class="view-main view active">
-            <h1 class="text pacifico-regular">Главная</h1>
+            <h2 class="text pacifico-regular">Главная</h1>
             <div class="buttons">
                 <button id="btn-add" class="pacifico-regular">📝Добавить напоминание</button>
                 <button id="btn-list" class="pacifico-regular">📋Смотреть напоминания</button>
@@ -30,7 +30,13 @@
                 </div>
             </form>
         </section>
-        <section class="view-list view"></section>
+        <section class="view-list view">
+            <div class="list__wrapper"></div>
+            <div class="pagination">
+                <button id="btn-prev"><</button>
+                <button id="btn-next">></button>
+            </div>
+        </section>
         <section class="modal modal-success view">
             <p class="text pacifico-regular">Успешно!</p>
         </section>

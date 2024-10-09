@@ -1,6 +1,10 @@
 <?
 class Database
 {
+    private static $schema_name = 'notifier';
+    private static $table_name = 'primary';
+    private $connection;
+
     private static $month_names = [
         '01' => 'января',
         '02' => 'февраля',
@@ -15,9 +19,8 @@ class Database
         '11' => 'ноября',
         '12' => 'декабря',
     ];
-    private static $schema_name = 'notifier';
-    private static $table_name = 'primary';
-    private $connection;
+
+    private static $limit = 2;
 
     function __construct() {
         $this->connection = new SQLite3(__DIR__.'/'.Database::$schema_name.'.sqlite3');
@@ -32,19 +35,19 @@ class Database
 
     function Read($query) {
         if ($query['all'] === 'Y') {
-            $result = $this->connection->query('SELECT * FROM "'.Database::$table_name.'"');
-            if ($result) {
-                $response = '<ol>';
-                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                    $row['datetime'] = explode('T', $row['datetime']);
-                    $date = explode('-', $row['datetime'][0]);
-                    $date[1] = Database::$month_names[$date[1]];
-                    $date = implode(' ', array_reverse($date));
-                    $row['datetime'] = implode('<br>', [$date, $row['datetime'][1]]);
-                    $list_items[] = '<li><p class="description text pacifico-regular">'.$row['description'].'</p><p class="text pacifico-regular">'.$row['datetime'].'</p></li>';
-                }
-                $response .= implode('<hr>', $list_items).'</ol>';
-                return $response;
+            $result = $this->connection->query('SELECT * FROM "'.Database::$table_name.'" ORDER BY datetime LIMIT '.Database::$limit.' OFFSET '.Database::$limit * $query['page']);
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $row['datetime'] = explode('T', $row['datetime']);
+                $date = explode('-', $row['datetime'][0]);
+                $date[1] = Database::$month_names[$date[1]];
+                $date = implode(' ', array_reverse($date));
+                $row['datetime'] = implode('<br>', [$date, $row['datetime'][1]]);
+                $list_items[] = '<li><p class="description text pacifico-regular">'.$row['description'].'</p><p class="text pacifico-regular">'.$row['datetime'].'</p></li>';
+            }
+            if (!empty($list_items)) {
+                return '<ul class="todo-list">'.implode('<hr>', $list_items).'</ul>';
+            } else {
+                return '<h2 class="text pacifico-regular">Делишек нет. Ура, беззаботность!</h2>';
             }
         }
     }
